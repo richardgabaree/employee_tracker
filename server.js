@@ -7,10 +7,9 @@ const connection = mysql.createConnection ({
     port : 3000,
     user: 'root',
     password: 'J@hntnaious1',
-    database: 'employee_tracker_db'
+    database: 'employeetracker_db'
 });
 
-// const runMain = () => {
     inquirer.prompt({
         name: 'action',
         type: 'list',
@@ -19,7 +18,7 @@ const connection = mysql.createConnection ({
                 'Add department',
                 'Add role',
                 'Add employee',
-                'View a department',
+                'View departments',
                 'View roles',
                 'View employees',
                 'Update employee role',
@@ -67,44 +66,45 @@ const connection = mysql.createConnection ({
     });
 
 // View Departments
-const readDepartment = () => {
+const viewDept = () => {
     connection.query('SELECT * FROM departments', (err, res) => {
       if (err) throw err;
-      // Log all results of the SELECT statement
-      console.log(res);
-      connection.end();
-    });
-  };
+      res.forEach(({name}) => {
+          console.log(res$,{name});
 
-  const readRoles = () => {
-    connection.query('SELECT * FROM roles', (err, res) => {
-      if (err) throw err;
+    });
+  });
+
+//   connection.end();
+//   const readRoles = () => {
+//     connection.query('SELECT * FROM roles', (err, res) => {
+//       if (err) throw err;
   
-      // Log all results of the SELECT statement
-      console.log(res);
-      connection.end();
-    });
-  };
+//       // Log all results of the SELECT statement
+//       console.log(res);
+//       connection.end();
+//     });
+//   };
 
-// Add Department
-function addDept(){
+// // Add Department
+// function addDept(){
 
-    inquirer.prompt({
+//     inquirer.prompt({
 
-            // Prompt user for name of department
-            name: "deptName",
-            type: "input",
-            message: "Department Name: "
-        }).then((answer) => {
+//             // Prompt user for name of department
+//             name: "deptName",
+//             type: "input",
+//             message: "Department Name: "
+//         }).then((answer) => {
                 
-            // add department to the table
-            connection.query(`INSERT INTO departments (department);`, (err, res) => {
-                if(err) throw err;
-                console.log("\n DEPARTMENT ADDED...\n ");
-            });
-                res.render('department', departments[i])
-        });
-}
+//             // add department to the table
+//             connection.query(`INSERT INTO departments (name)VALUES ("${answer.deptName}"`, (err, res) => {
+//                 if(err) 
+//                 console.log("\n DEPARTMENT ADDED...\n ");
+//             });
+//                 res.render('department', departments[i])
+//         });
+// }
 
 // // Add Role
 // function addRole(){
@@ -282,4 +282,4 @@ function addDept(){
 //         });
 //     }
 
-    
+}
