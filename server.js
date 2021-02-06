@@ -1,14 +1,21 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql');
 const cTable = require('console.table');
+const { throwError } = require('rxjs');
 
 const connection = mysql.createConnection ({
     host: 'localhost',
     port : 3000,
     user: 'root',
     password: 'J@hntnaious1',
-    database: 'employeetracker_db'
+    database: 'employeetracker_db',
 });
+
+connection.connect((err) => {
+    if (err)
+    console.log(`connected as id ${connection.threadId}`);
+    connection.end();
+  });
 
     inquirer.prompt({
         name: 'action',
@@ -68,23 +75,30 @@ const connection = mysql.createConnection ({
 // View Departments
 const viewDept = () => {
     connection.query('SELECT * FROM departments', (err, res) => {
-      if (err) throw err;
-      res.forEach(({name}) => {
-          console.log(res$,{name});
+      if (err) throwError;
+          console.log(res);
+          connection.end();
 
     });
-  });
+  };
 
-//   connection.end();
-//   const readRoles = () => {
-//     connection.query('SELECT * FROM roles', (err, res) => {
-//       if (err) throw err;
-  
-//       // Log all results of the SELECT statement
-//       console.log(res);
-//       connection.end();
-//     });
-//   };
+const viewRoles = () => {
+    connection.query('SELECT * FROM roles', (err, res) => {
+      if (err) throwError;
+          console.log(res);
+          connection.end();
+
+    });
+  };
+
+  const viewEmployees = () => {
+    connection.query('SELECT * FROM employees', (err, res) => {
+      if (err) throwError;
+          console.log(res);
+          connection.end();
+
+    });
+  };
 
 // // Add Department
 // function addDept(){
@@ -282,4 +296,4 @@ const viewDept = () => {
 //         });
 //     }
 
-}
+
