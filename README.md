@@ -4,10 +4,12 @@
   # Title 
     Employee_Tracker
 
-  ![webpage](/templates/assets/webpage.png)
+  ![webpage]()
 
   ## Description 
-    AS A manager, I WANT to generate a webpage that displays my team's basic info so I have quick access to their emails, id numbers, office location, schools and GitHub profiles as needed
+    As a business owner
+    I want to be able to view and manage the departments, roles, and employees in my company
+    So that I can organize and plan my business
 
 ##  TECHNOLOGIES USED:
     * mysql

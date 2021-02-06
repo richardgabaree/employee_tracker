@@ -74,13 +74,20 @@ connection.connect((err) => {
 
 // View Departments
 const viewDept = () => {
-    connection.query('SELECT * FROM departments', (err, res) => {
+    connection.query('SELECT * FROM departments', (err, results) => {
       if (err) throwError;
-          console.log(res);
           connection.end();
 
     });
   };
+
+// connection.connect(function(err) {
+//     if (err) throw err;
+//     con.query("SELECT * FROM departments", function (err, result, fields) {
+//       if (err) throw err;
+//       console.log(result);
+//     });
+//   });
 
 const viewRoles = () => {
     connection.query('SELECT * FROM roles', (err, res) => {
@@ -100,25 +107,25 @@ const viewRoles = () => {
     });
   };
 
-// // Add Department
-// function addDept(){
+// Add Department
+function addDept(){
 
-//     inquirer.prompt({
+    inquirer.prompt({
 
-//             // Prompt user for name of department
-//             name: "deptName",
-//             type: "input",
-//             message: "Department Name: "
-//         }).then((answer) => {
+            // Prompt user for name of department
+            name: "deptName",
+            type: "input",
+            message: "Department Name: "
+        }).then((answer) => {
                 
-//             // add department to the table
-//             connection.query(`INSERT INTO departments (name)VALUES ("${answer.deptName}"`, (err, res) => {
-//                 if(err) 
-//                 console.log("\n DEPARTMENT ADDED...\n ");
-//             });
-//                 res.render('department', departments[i])
-//         });
-// }
+            // add department to the table
+            connection.query(`INSERT INTO departments (name)VALUES ("${answer.deptName}"`, (err, res) => {
+                if(err) 
+                console.log("\n DEPARTMENT ADDED...\n ");
+            });
+                res.render('department', departments[i])
+        });
+}
 
 // // Add Role
 // function addRole(){
@@ -127,7 +134,7 @@ const viewRoles = () => {
 //     let departmentArr = [];
 
 //     // Create connection using promise-sql
-//     promisemysql.createConnection(connectionProperties)
+//     connection.query('SELECT * FROM roles'
 //     .then((conn) => {
 
 //         // Query all departments
@@ -296,4 +303,4 @@ const viewRoles = () => {
 //         });
 //     }
 
-
+// };
