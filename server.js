@@ -72,7 +72,7 @@ const viewDept = () => {
   connection.query("SELECT * FROM departments", (err, res) => {
     if (err) throwError;
     console.table(res);
-    startPrompt();
+    
   });
 };
 
@@ -207,8 +207,8 @@ function addEmployee() {
       connection.query(
         "INSERT INTO employees SET ?",
         {
-          first_name: val.firstName,
-          last_name: val.lastName,
+          first_name: val.firstname,
+          last_name: val.lastname,
           manager_id: managerId,
           role_id: roleId,
         },

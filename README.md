@@ -4,8 +4,6 @@
   # Title 
     Employee_Tracker
 
-  ![webpage]()
-
   ## Description 
     As a business owner
     I want to be able to view and manage the departments, roles, and employees in my company
@@ -38,7 +36,7 @@
 
     ![Project Link](https://richardgabaree.github.io/team_generator/)
 
-    [![Demo Video](/templates/assets/webpage.png)](https://drive.google.com/file/d/1K5xWO1034nkLw9REol-MNOwteRb01Rn4/view?usp=sharing "click to go to demo video")
+    [![Demo Video](/assets/employeetracker.png)](https://drive.google.com/file/d/1wTfslFoSJ8EDSkbSwIsP75Mh9rk_2DwS/view?usp=sharing "click to go to demo video")
   
   ## License
     MIT
