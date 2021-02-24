@@ -1,7 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const cTable = require("console.table");
-const { throwError } = require("rxjs");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -11,7 +10,8 @@ const connection = mysql.createConnection({
   database: "employeetracker_db",
 });
 
-inquirer
+function start ()
+{inquirer
   .prompt({
     name: "action",
     type: "list",
@@ -62,34 +62,46 @@ inquirer
         break;
 
       default:
-        console.log(`Invalid action: ${answer.action}`);
+        console.log(`Thank you for updating the database: ${answer.action}`);
         break;
     }
   });
+}
+
+start()
 
 // View Departments
 const viewDept = () => {
   connection.query("SELECT * FROM departments", (err, res) => {
-    if (err) throwError;
+    if (err) throw err;
     console.table(res);
-    
+    start();
   });
+  
 };
 
 // view roles
 const viewRoles = () => {
   connection.query("SELECT * FROM roles", (err, res) => {
-    if (err) throwError;
+    if (err) throw err;
     console.table(res);
+    start();
   });
+  
 };
 
 const viewEmployees = () => {
-  connection.query("SELECT * FROM employees", (err, res) => {
-    if (err) throwError;
+  let query = "SELECT employees.first_name, employees.last_name, roles.title, roles.salary, departments.department "
+  query += "FROM departments INNER JOIN roles ON roles.department_id = departments.id "
+  query += "INNER JOIN employees ON employees.role_id = roles.id;"
+  connection.query(query, (err, res) => {
+    if (err) throw err;
     console.table(res);
+    start();
   });
+  
 };
+
 //add dept
 function addDept() {
   inquirer
@@ -107,11 +119,12 @@ function addDept() {
           department: res.departments,
         },
         function (err) {
-          if (err) throwError;
+          if (err) throw err;
           console.table(res);
+          start();
         }
       );
-    });
+    })
 }
 
 //============= Add Employee Role ==========================//
@@ -142,6 +155,7 @@ function addRole() {
             function (err) {
               if (err) throw err;
               console.table(res);
+              start();
             }
           );
         });
@@ -215,6 +229,7 @@ function addEmployee() {
         function (err) {
           if (err) throw err;
           console.table(val);
+          start();
         }
       );
     });
@@ -258,8 +273,9 @@ function updateRole() {
               role_id: roleId,
             },
             function (err) {
-              if (err) throwError;
+              // if (err) throw err;
               console.table(val);
+              start();
             }
           );
         });

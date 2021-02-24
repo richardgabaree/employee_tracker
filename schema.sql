@@ -1,3 +1,4 @@
+DROP database IF EXISTS employeetracker_db;
 create database employeetracker_db;
 
 use employeetracker_db;
@@ -21,3 +22,4 @@ title varchar(30),
 salary decimal,
 department_id integer(20)
 );
+
